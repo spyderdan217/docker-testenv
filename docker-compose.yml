@@ -1,0 +1,23 @@
+name: testenv
+services:
+  whoami:
+    image: traefik/whoami:${VERSION}
+    restart: unless-stopped
+    container_name: testenv
+    env_file:
+      - stack.env
+    networks:
+      proxy:
+    ports:
+      - 58089:80
+    labels:
+      traefik.enable: true
+      traefik.http.routers.testenv.rule: Host(`testenv.westness.us`)
+      traefik.http.routers.testenv.entrypoints: websecure
+      traefik.http.routers.testenv.tls.certresolver: myresolver
+      traefik.http.services.testenv.loadbalancer.server.port: 80
+
+networks:
+  proxy:
+    name: proxy
+    internal: true
