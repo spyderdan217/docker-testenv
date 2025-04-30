@@ -11,11 +11,11 @@ services:
     ports:
       - 58089:80
     labels:
-      traefik.enable: ${TRAEFIK_ENABLE}
-      traefik.http.routers.${TRAEFIK_ROUTER_NAME}.rule: Host(`${TRAEFIK_ROUTER_HOST}`)
-      traefik.http.routers.${TRAEFIK_ROUTER_NAME}.entrypoints: ${TRAEFIK_ROUTER_ENTRYPOINT}
-      traefik.http.routers.${TRAEFIK_ROUTER_NAME}.tls.certresolver: ${TRAEFIK_ROUTER_CERTRESOLVER}
-      traefik.http.services.${TRAEFIK_SERVICE_NAME}.loadbalancer.server.port: ${TRAEFIK_SERVICE_PORT}
+      - "traefik.enable=${TRAEFIK_ENABLE}"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.rule=Host(`${TRAEFIK_ROUTER_HOST}`)"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.entrypoints=${TRAEFIK_ROUTER_ENTRYPOINT}"
+      - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.tls.certresolver=${TRAEFIK_ROUTER_CERTRESOLVER}"
+      - "traefik.http.services.${TRAEFIK_SERVICE_NAME}.loadbalancer.server.port=${TRAEFIK_SERVICE_PORT}"
 
 networks:
   proxy:
